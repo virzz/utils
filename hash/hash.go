@@ -1,4 +1,4 @@
-package utils
+package hash
 
 import (
 	"crypto/hmac"
@@ -15,6 +15,6 @@ func Sha256(data string) string {
 
 func HmacSha256(salt string) string {
 	h := hmac.New(sha256.New, []byte(salt))
-	h.Write(random.RandomBytes(16))
+	h.Write(random.Bytes(16))
 	return hex.EncodeToString(h.Sum(nil))
 }
