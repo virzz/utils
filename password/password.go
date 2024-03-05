@@ -2,8 +2,8 @@ package password
 
 import "golang.org/x/crypto/bcrypt"
 
-// GeneratePassword - Generate bcrypt hash password
-func GeneratePassword(password string) string {
+// Generate - Generate bcrypt hash password
+func Generate(password string) string {
 	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		return ""
@@ -11,8 +11,8 @@ func GeneratePassword(password string) string {
 	return string(hash)
 }
 
-// VerifyPassword - Verify bcrypt hash password
-func VerifyPassword(hash, password string) bool {
+// Verify - Verify bcrypt hash password
+func Verify(hash, password string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
 }
