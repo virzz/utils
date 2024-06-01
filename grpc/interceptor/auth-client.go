@@ -35,7 +35,7 @@ func (i *AuthClient) Stream(ctx context.Context, desc *grpc.StreamDesc, cc *grpc
 }
 
 func NewAuthClient(token string) *AuthClient {
-	return &AuthClient{md: metadata.New(map[string]string{
-		HeaderAuthorize: TokenScheme + " " + token,
-	})}
+	m := metadata.New(map[string]string{HeaderAuthorize: TokenScheme})
+	m.Append(HeaderAuthorize, token)
+	return &AuthClient{md: m}
 }
